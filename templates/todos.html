@@ -18,9 +18,26 @@
 
         <ul>
             {% for task in tasks %}
-            <li>{{task}}</li>
+            <!-- TODO 2: task.name because we want to pull only the name from the task and display it!!-->
+            <li>{{task.name}}
+                <!-- Using post request below bc we're changing data on the server! -->
+                <form method="POST" action="/delete-task" style="display:inline-block";>
+                    <input type="hidden" name="task-id" value="{{task.id}}" />
+                    <input type="submit" value="Done!" />
+                </form>
+
+            </li>
             {% endfor %}
         </ul>
+    <!-- Display completed tasks! -->
+    
+    <hr/>
+    <h2>Completed Tasks</h2>
+    <ul>
+        {% for task in completed_tasks %}
+            <li>{{task.name}}</li>
+        {% endfor %}
+    </ul>
 
     {% endif %}
 {% endblock %}
